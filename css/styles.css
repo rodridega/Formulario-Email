@@ -1,0 +1,32 @@
+* {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+body {
+  width: 100vw;
+  height: 100vh;
+  background: #bfdbf7;
+  background: -webkit-gradient(linear, left top, right top, color-stop(31%, #bfdbf7), to(#053c5e));
+  background: linear-gradient(90deg, #bfdbf7 31%, #053c5e 100%);
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.contenedor {
+  width: 70%;
+  height: 60vh;
+  border-radius: 10px;
+  background-color: white;
+}
+
+.header {
+  background-color: #a31621;
+}
+/*# sourceMappingURL=styles.css.map */

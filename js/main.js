@@ -2,7 +2,7 @@
 const email = document.getElementById("email");
 const asunto = document.getElementById("asunto");
 const mensaje = document.getElementById("mensaje");
-const formulario = document.querySelector("form");
+const formulario = document.getElementById("formulario");
 const btnEnviar = document.getElementById("enviar");
 
 addEventListeners();
@@ -13,7 +13,7 @@ function addEventListeners() {
   asunto.addEventListener("blur", validarForm);
   mensaje.addEventListener("blur", validarForm);
 
-  formulario.addEventListener('submit', enviarEmail)
+  formulario.addEventListener("submit", enviarEmail);
 }
 
 //FUNCIONES
@@ -34,13 +34,14 @@ function validarForm(e) {
       error.remove();
     }
   }
-  const regex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  const regex =
+    /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
   if (e.target.type === "email") {
     if (regex.test(e.target.value)) {
       const error = document.querySelector("p.error");
       if (error) {
-      error.remove();
+        error.remove();
       }
       e.target.classList.remove("border", "border-danger");
       e.target.classList.add("border", "border-success");
@@ -78,22 +79,38 @@ function mensajeAlerta(msj) {
     }, 4000);
   }
 }
+function resetForm() {
+  formulario.reset();
+}
+function enviarEmail(e) {
+  e.preventDefault();
 
-function enviarEmail(e){
-    e.preventDefault()
-    const mensaje = document.createElement("p");
-    mensaje.textContent = 'Email enviado!'
-    mensaje.classList.add(
-      "border",
-      "border-success",
-      "bg-success",
-      "bg-opacity-25",
-      "text-center",
-      "p-2"
-    );
-    formulario.appendChild(mensaje);
+  const spinner = document.querySelector(".spinner");
+  spinner.style.display = "flex";
 
-    setTimeout(() => {
-      mensaje.remove();
-    }, 4000);
+  setTimeout(() => {
+    spinner.style.display = "none";
+    const enviado = document.querySelectorAll(".enviado");
+
+    if (enviado.length === 0) {
+      const mensaje = document.createElement("p");
+      mensaje.textContent = "Email enviado!";
+      mensaje.classList.add(
+        "border",
+        "border-success",
+        "bg-success",
+        "bg-opacity-25",
+        "text-center",
+        "p-2",
+        "enviado"
+      );
+      formulario.appendChild(mensaje);
+      resetForm();
+      btnEnviar.disabled = true
+
+      setTimeout(() => {
+        mensaje.remove();
+      }, 4000);
+    }
+  }, 3000);
 }

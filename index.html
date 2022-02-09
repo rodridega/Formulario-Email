@@ -10,44 +10,56 @@
       integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
       crossorigin="anonymous"
     />
-    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/styles.css" />
     <title>Enviar Email</title>
   </head>
   <body>
     <div class="col-lg-7 col-sm-10 mx-auto bg-white">
-        <div class="header">
-            <h2 class="text-center text-white fs-2 p-3">Enviar nuevo Email</h2>
-        </div>
-        <div class="container col-lg-9 col-xl-6 p-5">
-            <form action="">
-            <div class="mb-3">
-                <label for="email" class="form-label">Para: </label>
-                <input
-                  type="email"
-                  class="form-control"
-                  placeholder="email@email.com"
-                  id="email"
-                />
-                <label for="subject" class="form-label" >Asunto</label>
-                <input type="text" class="form-control" id="asunto" placeholder="" />
-              </div>
-              <div class="mb-3">
-                <label for="exampleFormControlTextarea1" class="form-label" 
-                  >Mensaje</label
-                >
-                <textarea
-                  class="form-control"
-                  id="mensaje"
-                  rows="3"
-                ></textarea>
-                <div class="d-flex m-1 col-12">
-                    <button class="btn btn-primary container col-5" id="enviar" type="submit">Enviar</button>
-                    <button class="btn btn-danger container col-5" id="reset" type="reset">Borrar Email</button>
-                </div>
-              </div>
-            </form>
-        </div>
-      
+      <div class="header">
+        <h2 class="text-center text-white fs-2 p-3">Enviar nuevo Email</h2>
+      </div>
+      <div class="container col-lg-9 col-xl-6 p-5">
+        <form id="formulario">
+          <div class="mb-3">
+            <label for="email" class="form-label">Para: </label>
+            <input
+              type="email"
+              class="form-control"
+              placeholder="email@email.com"
+              id="email"
+            />
+            <label for="subject" class="form-label">Asunto</label>
+            <input
+              type="text"
+              class="form-control"
+              id="asunto"
+              placeholder=""
+            />
+          </div>
+          <div class="mb-3">
+            <label for="exampleFormControlTextarea1" class="form-label"
+              >Mensaje</label
+            >
+            <textarea class="form-control" id="mensaje" rows="3"></textarea>
+            <div class="d-flex m-1 col-12">
+              <button
+                class="btn btn-primary container col-5"
+                id="enviar"
+                type="submit"
+              >
+                Enviar
+              </button>
+              <button
+                class="btn btn-danger container col-5"
+                type="reset"
+              >
+                Borrar Email
+              </button>
+            </div>
+          </div>
+        </form>
+        <div class="spinner"></div>
+      </div>
     </div>
 
     <script

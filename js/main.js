@@ -4,6 +4,7 @@ const asunto = document.getElementById("asunto");
 const mensaje = document.getElementById("mensaje");
 const formulario = document.getElementById("formulario");
 const btnEnviar = document.getElementById("enviar");
+const btnReset = document.getElementById('resetear')
 
 addEventListeners();
 function addEventListeners() {
@@ -14,6 +15,7 @@ function addEventListeners() {
   mensaje.addEventListener("blur", validarForm);
 
   formulario.addEventListener("submit", enviarEmail);
+  btnReset.addEventListener('click', limpiarBordes)
 }
 
 //FUNCIONES
@@ -93,9 +95,9 @@ function enviarEmail(e) {
     const enviado = document.querySelectorAll(".enviado");
 
     if (enviado.length === 0) {
-      const mensaje = document.createElement("p");
-      mensaje.textContent = "Email enviado!";
-      mensaje.classList.add(
+      const mensajeSuccess = document.createElement("p");
+      mensajeSuccess.textContent = "Email enviado!";
+      mensajeSuccess.classList.add(
         "border",
         "border-success",
         "bg-success",
@@ -104,13 +106,20 @@ function enviarEmail(e) {
         "p-2",
         "enviado"
       );
-      formulario.appendChild(mensaje);
+      formulario.appendChild(mensajeSuccess);
       resetForm();
       btnEnviar.disabled = true
+      limpiarBordes()
 
       setTimeout(() => {
-        mensaje.remove();
+        mensajeSuccess.remove();
       }, 4000);
     }
   }, 3000);
+}
+
+function limpiarBordes(){
+    email.classList.remove('border', 'border-success','border-danger')
+    asunto.classList.remove('border', 'border-success', 'border-danger')
+    mensaje.classList.remove('border', 'border-success', 'border-danger')
 }

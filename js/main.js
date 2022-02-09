@@ -12,6 +12,8 @@ function addEventListeners() {
   email.addEventListener("blur", validarForm);
   asunto.addEventListener("blur", validarForm);
   mensaje.addEventListener("blur", validarForm);
+
+  formulario.addEventListener('submit', enviarEmail)
 }
 
 //FUNCIONES
@@ -24,7 +26,7 @@ function validarForm(e) {
   if (e.target.value.length === 0) {
     e.target.classList.remove("border", "border-success");
     e.target.classList.add("border", "border-danger");
-    mensajeError("Todos los campos son obligatorios");
+    mensajeAlerta("Todos los campos son obligatorios");
   } else {
     e.target.classList.add("border", "border-success");
     const error = document.querySelector("p.error");
@@ -46,7 +48,7 @@ function validarForm(e) {
       e.target.classList.remove("border", "border-success");
       e.target.classList.add("border", "border-danger");
       btnEnviar.disabled = true;
-      return mensajeError("Email invalido");
+      return mensajeAlerta("Email invalido");
     }
   }
 
@@ -55,12 +57,12 @@ function validarForm(e) {
   }
 }
 
-function mensajeError(msj) {
+function mensajeAlerta(msj) {
   const error = document.querySelectorAll(".error");
   if (error.length === 0) {
-    const msjError = document.createElement("p");
-    msjError.textContent = msj;
-    msjError.classList.add(
+    const mensaje = document.createElement("p");
+    mensaje.textContent = msj;
+    mensaje.classList.add(
       "border",
       "border-danger",
       "bg-danger",
@@ -69,10 +71,29 @@ function mensajeError(msj) {
       "p-2",
       "error"
     );
-    formulario.appendChild(msjError);
+    formulario.appendChild(mensaje);
 
     setTimeout(() => {
-      msjError.remove();
+      mensaje.remove();
     }, 4000);
   }
+}
+
+function enviarEmail(e){
+    e.preventDefault()
+    const mensaje = document.createElement("p");
+    mensaje.textContent = 'Email enviado!'
+    mensaje.classList.add(
+      "border",
+      "border-success",
+      "bg-success",
+      "bg-opacity-25",
+      "text-center",
+      "p-2"
+    );
+    formulario.appendChild(mensaje);
+
+    setTimeout(() => {
+      mensaje.remove();
+    }, 4000);
 }

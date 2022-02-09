@@ -19,13 +19,6 @@ body {
           align-items: center;
 }
 
-.contenedor {
-  width: 70%;
-  height: 60vh;
-  border-radius: 10px;
-  background-color: white;
-}
-
 .header {
   background-color: #a31621;
 }
